@@ -20,18 +20,6 @@ export class SplitterComponent implements OnInit {
   totalJackpot: number = 0;
   jackpotList: Array<number> = [0, 0, 0];
 
-  @ViewChild("blocSelection") blocSelection!: ElementRef;
-  
-  getValue() {
-    
-    this.blocSelection.nativeElement.innerHTML = "TEST";
-    
-    setTimeout(() => {
-     this.blocSelection.nativeElement.focus();
-     console.log("timept");
-     this.blocSelection.nativeElement.select;
-    }, 1000);
-  }
   
   constructor() {}
 
@@ -153,19 +141,6 @@ export class SplitterComponent implements OnInit {
 
   onSubmitTestImportForm(){
     this.importDatas = "Promesses de dons (Nom suivi de pf, suivi de '(auto)' si vous voulez un report automatique):\n\nMagicHannibal 40 (auto)\nBelli 1er le croquant 40\nbullitt666 30 (auto)\nSamneveu 250\nFred le Pillard 200\njaydeeya 100 (auto)\nWaidmann 100 (auto)\nLepilou 100\nChuck 200\nRumsteck 100 (auto)\nAstellan 50 (auto)\nClément le Destructeur 100 (auto)\nKarel Alchimiste 60 (auto)\nHonorius 666 le Chasseur 85 (auto)";
- 
-    
     this.onSubmitImportForm();
-  
-  }
- 
-  
-  clickZone(){
-    console.log("clic");
-    
-    document.getElementById("zoneA")?.onselect;
-
-    
-   
   }
 }

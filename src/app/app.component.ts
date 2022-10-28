@@ -7,14 +7,13 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent implements OnInit {
-  title = 'Caladan';
+  title = 'Caladan Challenge';
 
   constructor(private router: Router){}
 
   ngOnInit(){}
 
   goToSplitter(){
-    console.log("Menu Splitter");
     this.router.navigate(["splitter"]);
   }
 }

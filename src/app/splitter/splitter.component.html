@@ -15,17 +15,17 @@
         <br>
         <textarea required name="importDatas" id="importDatasId" class="form-control bg-light"
           placeholder="Copier le fil cagnotte ici !" rows="16" [(ngModel)]="importDatas"></textarea>
-    
+
         <br><br>
-    
+
         <div class="d-grid">
           <button class="btn btn-danger" type="submit" [disabled]="!importDatas || !importDate">
             <h5>Extraire les données !</h5>
           </button>
         </div>
-    
+
       </form>
-    
+
     </div>
 
 
@@ -41,25 +41,25 @@
               {{ participant.name }}
             </option>
           </select>
-    
+
           <select required name="winnerSilver" class="form-select" ngModel>
             <option value="">Choisissez le gagnant 🎁🎁</option>
             <option *ngFor="let participant of participantsList" value="{{ participant.name }}">
               {{ participant.name }}
             </option>
           </select>
-    
+
           <select required name="winnerBronze" class="form-select" ngModel>
             <option value="">Choisissez le gagnant 🎁</option>
             <option *ngFor="let participant of participantsList" value="{{ participant.name }}">
               {{ participant.name }}
             </option>
           </select>
-    
+
         </div>
-    
+
         <br><br>
-    
+
         <div class="bg-warning p-2 text-dark bg-opacity-10">
           <label for="labelWinners" class="form-label">
             <h4>Répartiteur : </h4>
@@ -71,19 +71,21 @@
             </option>
           </select>
         </div>
-    
+
         <br><br>
 
         <div class="d-grid">
-          <button class="btn btn-danger" type="submit" [disabled]="!paramsForm.form.valid"><h5>Lancer la répartition !</h5></button>
+          <button class="btn btn-danger" type="submit" [disabled]="!paramsForm.form.valid">
+            <h5>Lancer la répartition !</h5>
+          </button>
         </div>
-    
-       
+
+
       </form>
     </div>
 
     <div class="col-12 col-md-4" *ngIf="participantsList">
-      <table class="table table-striped table-hover" >
+      <table class="table table-striped table-hover">
         <thead>
           <tr class="table-primary">
             <th scope="col">N°</th>
@@ -124,11 +126,11 @@
 
 
   <!-- ********************************************************************************************************************* -->
- 
+
   <div *ngIf="repartitionsList">
     <div class="bg-success p-2 text-dark bg-opacity-10">
-      <h4 class="shadow p-3 mb-5 bg-body rounded">Fil Général</h4>
-      <div class="content" (click)="clickZone()">
+      <h4 class="shadow p-3 mb-5 bg-body rounded">Guilde : 🌜CALADAN 🌛</h4>
+      <div class="content" appCopyToClipboard appShadowContainer>
         Le calcul de la répartition des gains a été effectué, merci aux participants
         ! Vous trouverez votre propre fil en social, reprenant la répartition des
         gains.<br />
@@ -146,17 +148,17 @@
   </div>
   <br>
 
-<!-- ********************************************************************************************************************* -->
+  <!-- ********************************************************************************************************************* -->
 
-<div *ngIf="repartitionsList">
-  <div *ngFor="let winner of winnersList; let indexOfelement = index">
+  <div *ngIf="repartitionsList">
     <div class="bg-warning p-2 text-dark bg-opacity-10">
-      <h4 class="shadow p-3 mb-5 bg-body rounded">Fil Social {{winner.name}}</h4>
-      <div class="content">
-        <blockquote>Répartition cagnotte 🥇🥈🥉 {{ winner.name }}</blockquote>
-      </div>
-      <div class="content">
-        <blockquote (click)="clickZone()">
+      <h4 class="shadow p-3 mb-5 bg-body rounded">Social</h4>
+      <div *ngFor="let winner of winnersList; let indexOfelement = index">
+        <h5 class="shadow p-3" appCopyToClipboard appShadowContainer>
+          Répartition cagnotte 🥇🥈🥉 {{ winner.name }}
+        </h5>
+        <br>
+        <div class="content" appCopyToClipboard appShadowContainer>
           Bonsoir à toutes et à tous,<br /><br />
           Voilà le fil pour l'attribution de la récompense au
           {{ indexOfelement + 1 }}° gagnant : {{ winner.name }}, pour la période
@@ -167,33 +169,29 @@
           Ps: comme c’est un don, merci de reverser le bénéfice sur le même gm
           dans le cas où vous prenez une place qui vous rapporte des pfs. Je
           compte sur votre honnêteté !
-        </blockquote>
-      </div>
-      <blockquote>
-        Doivent déposer sur le gm de {{ winner.name }} ⚠ mettre nom GM ⚠ :
-        (copier/coller message et indiquer "fait")<br />
-        <div *ngFor="let repartition of repartitionsList[indexOfelement]">
-          {{ repartition.name }} {{ repartition.donation }}
+  
+          Doivent déposer sur le gm de {{ winner.name }} ⚠ mettre nom GM ⚠ :
+          (copier/coller message et indiquer "fait")<br />
+          <div *ngFor="let repartition of repartitionsList[indexOfelement]">
+            {{ repartition.name }} {{ repartition.donation }}
+          </div>
         </div>
-      </blockquote>
+        <br> <br>
+      </div>
     </div>
-    <br>
   </div>
-</div>
-<br>
-
-<!-- *********************************************************************************************************************-->
-
-<div *ngIf="repartitionsList">
-  <div class="bg-danger p-2 text-dark bg-opacity-10">
-    <h4 class="shadow p-3 mb-5 bg-body rounded">Fil Cagnotte</h4>
-    <div class="content">
-      <blockquote>
+  <br>
+  
+  <!-- *********************************************************************************************************************-->
+  
+  <div *ngIf="repartitionsList">
+    <div class="bg-danger p-2 text-dark bg-opacity-10">
+      <h4 class="shadow p-3 mb-5 bg-body rounded">Social</h4>
+      <h5 class="shadow p-3" appCopyToClipboard appShadowContainer>
         🥇Cagnotte période du {{ importDate | customPeriod: 1 }}
-      </blockquote>
-    </div>
-    <div class="content">
-      <blockquote>
+      </h5>
+      <br>
+      <div class="content" appCopyToClipboard appShadowContainer>
         Tous les 15 jours, nous récompensons les 3 joueurs qui ont eu la meilleure
         progression.<br />
         Comment ?<br />
@@ -233,18 +231,16 @@
         <br />
         Pour info, les membres du conseil de Caladan renoncent à leur droit de
         gagner la cagnotte. 😉
-      </blockquote>
+      </div>
     </div>
   </div>
-</div>
-<br>
+  <br>
 
-<!-- ********************************************************************************************************************* -->
-<div *ngIf="repartitionsList">
-  <div class="bg-danger p-2 text-dark bg-opacity-10">
-    <h4 class="shadow p-3 mb-5 bg-body rounded">Fil Cagnotte (Suite)</h4>
-    <div class="content">
-      <blockquote>
+  <!-- ********************************************************************************************************************* -->
+
+  <div *ngIf="repartitionsList">
+    <div class="bg-danger p-2 text-dark bg-opacity-10">
+      <div class="content" appCopyToClipboard appShadowContainer>
         Cagnotte pour la période du {{ importDate | customPeriod: 1 }} (
         <span *ngFor="let winner of winnersList">{{ winner.name }}, </span>
         ) ne sont pas éligibles aux gains mais rien ne les empêche d'être dans le
@@ -256,10 +252,7 @@
             {{ participant.name }} {{ participant.donation }} (auto)
           </div>
         </div>
-      </blockquote>
+      </div>
     </div>
   </div>
-</div>
-</div>
-
-<blockquote #blocSelection (click)="getValue()">Caladan</blockquote>
+  </div>
