@@ -11,11 +11,6 @@ export class CopyToClipboardDirective {
   @HostListener('click') onClick() {
     const el = document.createElement('textarea');
     el.value = this.elementRef.nativeElement.innerText;
-   // document.body.appendChild(el);
-    //el.select();
-    
     navigator.clipboard.writeText(el.value);
-   // document.execCommand('copy');
-   //document.body.removeChild(el);
   }
 }

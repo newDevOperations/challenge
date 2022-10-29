@@ -36,21 +36,21 @@
             <h4>Gagnants : </h4>
           </label>
           <select required name="winnerGold" class="form-select" ngModel>
-            <option value="">Choisissez le gagnant 🎁🎁🎁</option>
+            <option value="">Choisissez le gagnant 🎁🎁🎁 = {{jackpotList[0]}} pfs</option>
             <option *ngFor="let participant of participantsList" value="{{ participant.name }}">
               {{ participant.name }}
             </option>
           </select>
 
           <select required name="winnerSilver" class="form-select" ngModel>
-            <option value="">Choisissez le gagnant 🎁🎁</option>
+            <option value="">Choisissez le gagnant 🎁🎁 = {{jackpotList[1]}} pfs</option>
             <option *ngFor="let participant of participantsList" value="{{ participant.name }}">
               {{ participant.name }}
             </option>
           </select>
 
           <select required name="winnerBronze" class="form-select" ngModel>
-            <option value="">Choisissez le gagnant 🎁</option>
+            <option value="">Choisissez le gagnant 🎁 = {{jackpotList[2]}} pfs</option>
             <option *ngFor="let participant of participantsList" value="{{ participant.name }}">
               {{ participant.name }}
             </option>
@@ -122,8 +122,6 @@
       </table>
     </div>
   </div>
-
-
 
   <!-- ********************************************************************************************************************* -->
 

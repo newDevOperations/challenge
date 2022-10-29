@@ -4,7 +4,9 @@ import { Participant } from "../classes/participant";
 @Component({
   selector: "app-splitter",
   templateUrl: `splitter.component.html`,
-  styles: [],
+  styleUrls: [
+    '../shared/message-head.component.css'
+  ]
 })
 export class SplitterComponent implements OnInit {
   

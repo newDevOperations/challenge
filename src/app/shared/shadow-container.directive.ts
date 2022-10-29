@@ -5,18 +5,10 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 
 
-
-
 export class ShadowContainerDirective {
 
-  //private defaultColor: string ="#E2E2E2";
- // private activeColor:  string ="#207CFF";
-
-  constructor(private el: ElementRef) { 
-   
-  }
+  constructor(private el: ElementRef) {}
   
-
   @HostListener(`mouseenter`)
   onMouseEnter(){
     this.setBorderShadow("10px", "20px", "30px", "black");
