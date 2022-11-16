@@ -26,9 +26,10 @@ export class SplitterComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.importDate = new Date(Date.now()).toISOString().split('T')[0];
-    console.log(Date.now());
-    console.log(this.importDate);
+    //set to Sunday of last 2 weeks
+    let d = new Date();
+    d.setDate(d.getDate() - (d.getDay() + 6) % 7 - 7);
+    this.importDate = new Date(d).toISOString().split('T')[0];
   }
 
   
