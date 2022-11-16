@@ -1,4 +1,4 @@
-import { Component, OnInit, VERSION, ViewChild, ElementRef, createPlatform } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Participant } from "../classes/participant";
 
 @Component({
@@ -27,6 +27,8 @@ export class SplitterComponent implements OnInit {
 
   ngOnInit(): void {
     this.importDate = new Date(Date.now()).toISOString().split('T')[0];
+    console.log(Date.now());
+    console.log(this.importDate);
   }
 
   
@@ -116,6 +118,7 @@ export class SplitterComponent implements OnInit {
     workList.delete(data.winnerBronze);
     workList.delete(data.dispatcher);
 
+     //repartition
     let sum = 0;
     for (let n = 0; n <= 2; n++) {
       sum = this.repartitionsList[n][0].donation;

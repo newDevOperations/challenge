@@ -35,14 +35,14 @@
           <label for="labelWinners" class="form-label">
             <h4>Gagnants : </h4>
           </label>
-          <select required name="winnerGold" class="form-select" ngModel>
+          <select class="form-select" required name="winnerGold" ngModel>
             <option value="">Choisissez le gagnant 🎁🎁🎁 = {{jackpotList[0]}} pfs</option>
             <option *ngFor="let participant of participantsList" value="{{ participant.name }}">
-              {{ participant.name }}
+              {{ participant.name }} 
             </option>
           </select>
 
-          <select required name="winnerSilver" class="form-select" ngModel>
+          <select class="form-select" required name="winnerSilver" ngModel>
             <option value="">Choisissez le gagnant 🎁🎁 = {{jackpotList[1]}} pfs</option>
             <option *ngFor="let participant of participantsList" value="{{ participant.name }}">
               {{ participant.name }}
@@ -160,20 +160,23 @@
           Bonsoir à toutes et à tous,<br /><br />
           Voilà le fil pour l'attribution de la récompense au
           {{ indexOfelement + 1 }}° gagnant : {{ winner.name }}, pour la période
-          du {{ importDate | customPeriod: 0 }}.<br />
+          du {{ importDate | customPeriod: 0 : false}}.<br />
           Merci à {{ winner.name }} de lier un GM sur ce fil (avec un niveau
           vierge et ouvert pour faciliter le suivi) afin que les dons puissent
           être déposés.<br /><br />
           Ps: comme c’est un don, merci de reverser le bénéfice sur le même gm
-          dans le cas où vous prenez une place qui vous rapporte des pfs. Je
-          compte sur votre honnêteté !
-  
+          dans le cas où vous prenez une place qui vous rapporte des pfs. Nous
+          comptons sur votre honnêteté !
+        </div>
+        <br>
+          <div class="content" appCopyToClipboard appShadowContainer>
           Doivent déposer sur le gm de {{ winner.name }} ⚠ mettre nom GM ⚠ :
           (copier/coller message et indiquer "fait")<br />
           <div *ngFor="let repartition of repartitionsList[indexOfelement]">
             {{ repartition.name }} {{ repartition.donation }}
           </div>
-        </div>
+
+      </div>
         <br> <br>
       </div>
     </div>
@@ -186,7 +189,7 @@
     <div class="bg-danger p-2 text-dark bg-opacity-10">
       <h4 class="shadow p-3 mb-5 bg-body rounded">Social</h4>
       <h5 class="shadow p-3" appCopyToClipboard appShadowContainer>
-        🥇Cagnotte période du {{ importDate | customPeriod: 1 }}
+        🥇Cagnotte période du {{ importDate | customPeriod: 1 : true}}
       </h5>
       <br>
       <div class="content" appCopyToClipboard appShadowContainer>
@@ -239,7 +242,7 @@
   <div *ngIf="repartitionsList">
     <div class="bg-danger p-2 text-dark bg-opacity-10">
       <div class="content" appCopyToClipboard appShadowContainer>
-        Cagnotte pour la période du {{ importDate | customPeriod: 1 }} (
+        Cagnotte pour la période du {{ importDate | customPeriod: 1 : true}} (
         <span *ngFor="let winner of winnersList">{{ winner.name }}, </span>
         ) ne sont pas éligibles aux gains mais rien ne les empêche d'être dans le
         top 3 quand même ;) )<br />

@@ -1,11 +1,7 @@
 export class Participant {
-    name: string;
-    donation: number;
-    isAuto: boolean;
-
-    constructor(name: string, donation: number, isAuto: boolean) {
-        this.name = name;
-        this.donation = donation;
-        this.isAuto = isAuto;
+    constructor(public name: string,
+                public donation: number,
+                public isAuto: boolean) {
+      
     }
 }
