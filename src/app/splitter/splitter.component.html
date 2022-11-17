@@ -38,7 +38,7 @@
           <select class="form-select" required name="winnerGold" ngModel>
             <option value="">Choisissez le gagnant 🎁🎁🎁 = {{jackpotList[0]}} pfs</option>
             <option *ngFor="let participant of participantsList" value="{{ participant.name }}">
-              {{ participant.name }} 
+              {{ participant.name }}
             </option>
           </select>
 
@@ -169,22 +169,22 @@
           comptons sur votre honnêteté !
         </div>
         <br>
-          <div class="content" appCopyToClipboard appShadowContainer>
+        <div class="content" appCopyToClipboard appShadowContainer>
           Doivent déposer sur le gm de {{ winner.name }} ⚠ mettre nom GM ⚠ :
           (copier/coller message et indiquer "fait")<br />
           <div *ngFor="let repartition of repartitionsList[indexOfelement]">
             {{ repartition.name }} {{ repartition.donation }}
           </div>
 
-      </div>
+        </div>
         <br> <br>
       </div>
     </div>
   </div>
   <br>
-  
+
   <!-- *********************************************************************************************************************-->
-  
+
   <div *ngIf="repartitionsList">
     <div class="bg-danger p-2 text-dark bg-opacity-10">
       <h4 class="shadow p-3 mb-5 bg-body rounded">Social</h4>
@@ -256,4 +256,4 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
