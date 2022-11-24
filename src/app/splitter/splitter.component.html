@@ -84,6 +84,8 @@
       </form>
     </div>
 
+ <!-- ********************************************************************************************************************* -->
+
     <div class="col-12 col-md-4" *ngIf="participantsList">
       <table class="table table-striped table-hover">
         <thead>
@@ -189,15 +191,15 @@
     <div class="bg-danger p-2 text-dark bg-opacity-10">
       <h4 class="shadow p-3 mb-5 bg-body rounded">Social</h4>
       <h5 class="shadow p-3" appCopyToClipboard appShadowContainer>
-        🥇Cagnotte période du {{ importDate | customPeriod: 1 : true}}
+        🥇Cagnotte TOP du {{ importDate | customPeriod: 1 : true}}
       </h5>
       <br>
       <div class="content" appCopyToClipboard appShadowContainer>
         Tous les 15 jours, nous récompensons les 3 joueurs qui ont eu la meilleure
         progression.<br />
         Comment ?<br />
-        Toutes les 2 semaines, nous ouvrons une cagnotte et chaque chaque joueur
-        pourra y souscrire en écrivant son nom et le nombre de PFS qu’il souhaite
+        A chaque nouvelle session, nous ouvrons une cagnotte et chaque joueur
+        peut y souscrire en écrivant son nom et le nombre de PFS qu’il souhaite
         donner. Ce don n’est absolument pas obligatoire ! Sachez néanmoins que si
         vous etes dans le top 3 des meilleures progressions, vous ne pourrez pas
         remporter la cagnotte si vous n'y participez pas. 😊<br />
@@ -210,50 +212,70 @@
         <br />
         Les gagnants pourront alors indiquer sur quel GM ils souhaitent que la
         récompense soit déposée. Pas d’inquiétude ! pas de calcul de répartition
-        ou de pourcentage à faire ! J’indiquerai à chacun à qui il doit donner ses
+        ou de pourcentage à faire ! Nous indiquerons à chacun à qui il doit donner ses
         PFS afin que chaque gagnant touche le bon montant de la récompense 😊<br />
         <br />
-        Donc il est donc important d’attendre mes indications avant de déposer les
+        Donc il est important d’attendre les indications avant de déposer les
         PF, sinon il nous sera impossible d’obtenir la répartition 50, 30, 20 !<br />
         <br />
-        Il sera impossible de gagner deux fois d’affiliées :<br />
-        Exemple:<br />
-        Si vous êtes 3ième en période 1<br />
-        Et 3ième en période 2.<br />
-        Vous ne toucherez pas de récompense en période 2. Celle ci sera attribuée
-        au 4ième.<br />
-        <br />
-        Autre exemple:<br />
-        Vous êtes 3ième la période 1, premier la période 2, ==> Vous ne toucherez
-        pas de récompenses en période 2 non plus.<br />
-        <br />
-        Tout redevient normal en période 3, vous pouvez de nouveau gagner la
-        récompense<br />
-        <br />
+        Pour récompenser le plus grand nombre, il sera impossible d'être sur le podium de fois de suite.<br />
+        Comme par exemple 
+        <span *ngFor="let winner of winnersList">{{ winner.name }}, </span>
+        qui ont gagné la session précédente ne sont pas éligibles aux gains pour cette nouvelle session mais rien ne les empêche d'être dans le
+        top 3 quand même ;) )<br />
+           <br />
         Pour info, les membres du conseil de Caladan renoncent à leur droit de
-        gagner la cagnotte. 😉
+        gagner la cagnotte. 😉 <br />
+        <br />
+        Si vous n'êtes pas encore inscrit pour la cagnotte, vous pouvez y souscrire en recopiant le message suivant 
+        et en y ajoutant votre Nom, le nombre de pfs et la mention '(auto)' si vous voulez un
+        report automatique de votre promesse de don la session suivante.<br />
       </div>
     </div>
   </div>
   <br>
 
   <!-- ********************************************************************************************************************* -->
-
+ 
   <div *ngIf="repartitionsList">
     <div class="bg-danger p-2 text-dark bg-opacity-10">
-      <div class="content" appCopyToClipboard appShadowContainer>
-        Cagnotte pour la période du {{ importDate | customPeriod: 1 : true}} (
-        <span *ngFor="let winner of winnersList">{{ winner.name }}, </span>
-        ) ne sont pas éligibles aux gains mais rien ne les empêche d'être dans le
-        top 3 quand même ;) )<br />
-        Promesses de dons (Nom suivi de pf, suivi de '(auto)' si vous voulez un
-        report automatique):<br />
-        <div *ngFor="let participant of participantsList">
-          <div *ngIf="participant.isAuto">
-            {{ participant.name }} {{ participant.donation }} (auto)
+      <div *ngIf="participantsList.length < 35">
+        <div class="content" appCopyToClipboard appShadowContainer>
+          Cagnotte pour la période du {{ importDate | customPeriod: 1 : true}} <br />
+          <br />
+          <div *ngFor="let participant of participantsList">
+            <div *ngIf="participant.isAuto">
+              {{ participant.name }} {{ participant.donation }} (auto)
+            </div>
           </div>
         </div>
       </div>
+  
+      <div *ngIf="participantsList.length >= 35">
+        <div class="content" appCopyToClipboard appShadowContainer>
+          Cagnotte 1/2 pour la période du {{ importDate | customPeriod: 1 : true}} <br />
+          <br />
+          <div *ngFor="let participant of participantsList index as i">
+            <div *ngIf="participant.isAuto && i < 35">
+              {{ participant.name }} {{ participant.donation }} (auto)
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="content" appCopyToClipboard appShadowContainer>
+          Cagnotte 2/2 pour la période du {{ importDate | customPeriod: 1 : true}} <br />
+          <br />
+          <div *ngFor="let participant of participantsList index as i">
+            <div *ngIf="participant.isAuto && i >= 35">
+              {{ participant.name }} {{ participant.donation }} (auto)
+            </div>
+          </div>
+        </div>
+      </div>
+  
     </div>
   </div>
-</div>
+
+
+
+  </div>
